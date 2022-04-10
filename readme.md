@@ -1,0 +1,1 @@
+// "build": "npx tsc && copyfiles -a -f src/assets/* dist/assets",

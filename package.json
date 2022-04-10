@@ -4,17 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc && copyfiles -a -f src/assets/* dist/assets",
-    "start": "node dist/index.js",
-    "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    
+    "build": "npx tsc",
+    "start": "node dist/src/index.js",
+    "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/cindex.js\"",
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "knex": "^0.95.15",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.23",
     "concurrently": "^7.0.0",

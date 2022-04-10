@@ -1,84 +1,84 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import cors from 'cors';
+import express from 'express';
+import routes from './routes';
+import { Request, Response } from 'express'
+const app = express();
 
-import { Team } from "./model/team";
-import { Match } from './model/match';
+app.use(express.json());
+app.use(cors());
+app.use(routes);
 
-dotenv.config();
-
-const app: Express = express();
-const port = process.env.PORT;
+app.listen(8080);
 
 
-const lista = require("./assets/lista.json");
 
+// const lista = require("./assets/lista.json");
 app.get('/', (req: Request, res: Response) => {
-
-  let teams: Team[] = [];
-
-  const listaDireita: string[] = suffle(lista.direita);
-  const listaEsquerda: string[] = suffle(lista.esquerda);
-
-  for (let i = 0; i < listaDireita.length; i++) {
-    const team: Team = {
-      playerA: {
-        name: listaDireita[i]
-      },
-      playerB: {
-        name: listaEsquerda[i]
-      }
-    }
-
-    teams.push(team);
-  }
-
-  console.log(teams)
-
-
-  res.send(suffle(suffle(sortGroupsOneLeg(teams))));
+  res.json("TESTE")
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at https://localhost:${port}`);
-});
+  // let teams: Team[] = [];
+
+  // const listaDireita: string[] = suffle(lista.direita);
+  // const listaEsquerda: string[] = suffle(lista.esquerda);
+
+  // for (let i = 0; i < listaDireita.length; i++) {
+  //   const team: Team = {
+  //     playerA: {
+  //       name: listaDireita[i]
+  //     },
+  //     playerB: {
+  //       name: listaEsquerda[i]
+  //     }
+  //   }
+
+  //   teams.push(team);
+  // }
+
+  // console.log(teams)
+
+
+  // res.send(suffle(suffle(sortGroupsOneLeg(teams))));
+// });
 
 
 
-function suffle(array: any[]): any[] {
-  let currentIndex = array.length;
-  let randomIndex;
 
-  while (currentIndex != 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+// function suffle(array: any[]): any[] {
+//   let currentIndex = array.length;
+//   let randomIndex;
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-  }
+//   while (currentIndex != 0) {
+//     // Pick a remaining element...
+//     randomIndex = Math.floor(Math.random() * currentIndex);
+//     currentIndex--;
 
-  return array;
-}
+//     // And swap it with the current element.
+//     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+//   }
 
-function sortGroupsOneLeg(teams: Team[]) : Match[] {
-  let matches: Match[] = [];
-  let currentIndex = 0;
+//   return array;
+// }
 
-  while (currentIndex < teams.length) {
-    teams.forEach((team: Team, index: number) => {
-      if (currentIndex > index) {
-        matches.push({
-          teamA: team,
-          teamB: teams[currentIndex]
-        })
-      }
-    });
+// function sortGroupsOneLeg(teams: Team[]) : Match[] {
+//   let matches: Match[] = [];
+//   let currentIndex = 0;
 
-    currentIndex++;
-  }
+//   while (currentIndex < teams.length) {
+//     teams.forEach((team: Team, index: number) => {
+//       if (currentIndex > index) {
+//         matches.push({
+//           teamA: team,
+//           teamB: teams[currentIndex]
+//         })
+//       }
+//     });
 
-  return matches;
-}
+//     currentIndex++;
+//   }
+
+//   return matches;
+// }
 
 
-  // return table;
+//   // return table;
