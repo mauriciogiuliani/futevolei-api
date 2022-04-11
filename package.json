@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
+    "start": "node index.js",
     "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/cindex.js\"",
     "knex:migrate": "knex --knexfile dist/knexfile.js migrate:latest",
     "knex:migrate:dev": "knex --knexfile src/knexfile.ts migrate:latest"
