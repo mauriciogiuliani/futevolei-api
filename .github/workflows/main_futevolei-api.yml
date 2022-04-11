@@ -41,11 +41,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-          
+
       - name: npm install
         run: npm install
       # - name: Download artifact from build job
