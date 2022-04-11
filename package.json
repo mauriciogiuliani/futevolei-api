@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
     "build": "npx tsc",
-    "start": "node dist/src/index.js",
+    "start": "tsnd  --transpile-only --ignore-watch node_modules --respawn src/index.ts",
     "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/cindex.js\"",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
   },
@@ -17,7 +16,8 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "knex": "^0.95.15",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "ts-node-dev": "^1.1.8"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
